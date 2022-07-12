@@ -2,7 +2,6 @@ import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
 
-import * as indexRouter from './routes/index.js';
 import * as  issuesRouter from './routes/issues.js'
 
 import { getIssues } from './routes/issues.service.js';
@@ -24,8 +23,7 @@ var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/', indexRouter.router);
-app.use('/issues', exposeIssuesService, issuesRouter.router);
+app.use('/api/issues', exposeIssuesService, issuesRouter.router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

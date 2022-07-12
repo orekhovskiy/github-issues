@@ -4,4 +4,5 @@
 1. `npm start`
 1. Зайти на адрес `http://localhost:3000`
 # API
-1. Запрос issues для данного репозитория и пользователя: `/issues/<owner>/<repository>?<filter>`
+1. Запрос issues для данного репозитория и пользователя: `/api/issues/<owner>/<repository>?<filter>`
+
