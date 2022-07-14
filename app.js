@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 
 import * as  issuesRouter from './routes/issues.js';
 import { getIssues } from './routes/issues.service.js';
@@ -28,7 +28,8 @@ app.use(function(req, res) {
 });
 
 app.use(function (err, req, res, next) {
-  if (err.response.status == 404) {
+  if (err.response) {
+    if (err.response.status == 404) {
       res.status(404).json({ error:'Unable to get issues form given owner/repo' })
     }
     else if (err.response.status == 422) {
@@ -41,6 +42,7 @@ app.use(function (err, req, res, next) {
       console.error(err);
       res.status(500).json({ error: 'Failed to request Github API' });
     }
+  }  
 });
 
 app.listen(3000, () => {
